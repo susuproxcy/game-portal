@@ -50,7 +50,7 @@
 
     <script>
         function openGame(url) {
-            var newWindow = window.open('about:blank', '_blank'); // Open a blank tab
+            var newWindow = window.open('about:blank', '_blank', 'fullscreen=yes, width=' + screen.width + ', height=' + screen.height); // Open fullscreen about:blank
             newWindow.document.title = "about:blank"; // Set title of about:blank page
             newWindow.document.write('<html><head><title>about:blank</title></head><body>');
             newWindow.document.write('<iframe src="' + url + '" width="100%" height="100%" style="border: none;"></iframe>');
