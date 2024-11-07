@@ -38,9 +38,19 @@
 <body>
     <h1>Game Portal</h1>
     <ul class="game-list">
-        <li><a href="about:blank" target="_blank" onclick="window.open('https://susuproxcy.github.io/susug/'); return false;">OvO</a></li>
-        <li><a href="about:blank" target="_blank" onclick="window.open('https://fb.nbadebate.com'); return false;">FootBall Bros</a></li>
-        <li><a href="about:blank" target="_blank" onclick="window.open('https://sandstrike.io'); return false;">SandStrike</a></li>
+        <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
+        <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
+        <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
     </ul>
+
+    <script>
+        function openGame(url) {
+            var newWindow = window.open('about:blank', '_blank'); // Open a blank tab
+            newWindow.document.write('<html><head><title>Game</title></head><body>');
+            newWindow.document.write('<iframe src="' + url + '" width="100%" height="100%" style="border: none;"></iframe>');
+            newWindow.document.write('</body></html>');
+            newWindow.document.close();
+        }
+    </script>
 </body>
 </html>
