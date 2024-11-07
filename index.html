@@ -78,18 +78,16 @@
     </div>
 
     <script>
-        var failureCount = 0; // Track the number of failed attempts
+        var failureCount = 0;
 
         function checkKey() {
             var keyInput = document.getElementById('keyInput').value;
             if (keyInput === "PortalKey") {
-                // Correct key entered, proceed to game portal
                 window.location.href = "gamePortal.html"; // Redirect to game portal page
             } else {
                 failureCount++;
                 document.getElementById('errorMessage').textContent = "Incorrect Key. Attempt " + failureCount + " of 3.";
                 if (failureCount >= 3) {
-                    // Redirect to request page after 3 failed attempts
                     document.getElementById('keyForm').style.display = "none";
                     document.getElementById('keyRequestForm').style.display = "block";
                 }
@@ -104,7 +102,6 @@
                 return;
             }
 
-            // Send the email request to the backend server
             fetch("http://localhost:3000/send-email", {
                 method: "POST",
                 headers: {
