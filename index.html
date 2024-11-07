@@ -4,63 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Portal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Dosis', sans-serif;
-            font-weight: bold;
-            background-color: #A8D5BA;
-            text-align: center;
-            padding: 50px;
-        }
-        h1 {
-            color: #333;
-        }
-        .game-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .game-list li {
-            margin: 20px 0;
-        }
-        .game-list a {
-            text-decoration: none;
-            font-size: 20px;
-            color: #007bff;
-            background-color: white;
-            padding: 20px 40px;
-            border-radius: 10px;
-            transition: background-color 0.3s;
-            display: inline-block;
-            background-color: #ADD8E6;
-        }
-        .game-list a:hover {
-            background-color: #E2E6EA;
-        }
-        #keyForm, #keyRequestForm {
-            display: block;
-        }
-        input[type="text"], input[type="email"] {
-            padding: 10px;
-            font-size: 18px;
-            margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #ADD8E6;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #E2E6EA;
-        }
+        /* Your styles here */
     </style>
 </head>
 <body>
     <h1>Game Portal</h1>
-
+    
     <div id="keyForm">
         <h2>Key Required</h2>
         <input type="text" id="keyInput" placeholder="Enter Key">
@@ -68,7 +18,7 @@
         <button onclick="checkKey()">Submit</button>
         <p id="errorMessage" style="color: red;"></p>
     </div>
-
+    
     <div id="keyRequestForm" style="display:none;">
         <h2>Key Request Form</h2>
         <p>Put your email so we can send the request for the key</p>
