@@ -50,12 +50,26 @@
 
     <script>
         function openGame(url) {
-            var newWindow = window.open('about:blank', '_blank', 'fullscreen=yes, width=' + screen.width + ', height=' + screen.height); // Open fullscreen about:blank
+            var newWindow = window.open('about:blank', '_blank'); // Open a blank page
             newWindow.document.title = "about:blank"; // Set title of about:blank page
             newWindow.document.write('<html><head><title>about:blank</title></head><body>');
             newWindow.document.write('<iframe src="' + url + '" width="100%" height="100%" style="border: none;"></iframe>');
             newWindow.document.write('</body></html>');
             newWindow.document.close();
+
+            // Request fullscreen after the page is loaded
+            newWindow.document.body.onload = function() {
+                if (newWindow.document.documentElement.requestFullscreen) {
+                    newWindow.document.documentElement.requestFullscreen();
+                } else if (newWindow.document.documentElement.mozRequestFullScreen) { // Firefox
+                    newWindow.document.documentElement.mozRequestFullScreen();
+                } else if (newWindow.document.documentElement.webkitRequestFullscreen) { // Chrome and Safari
+                    newWindow.document.documentElement.webkitRequestFullscreen();
+                } else if (newWindow.document.documentElement.msRequestFullscreen) { // IE/Edge
+                    newWindow.document.documentElement.msRequestFullscreen();
+                }
+            };
+
             window.close(); // Close the game portal page
         }
     </script>
