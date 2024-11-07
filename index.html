@@ -37,18 +37,59 @@
         .game-list a:hover {
             background-color: #E2E6EA;
         }
+        #gamePortal {
+            display: none;
+        }
+        #keyForm {
+            display: block;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ADD8E6;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #E2E6EA;
+        }
     </style>
 </head>
 <body>
     <h1>Game Portal</h1>
-    <ul class="game-list">
-        <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
-        <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
-        <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
-        <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li> <!-- Proxy square -->
-    </ul>
+    <div id="keyForm">
+        <h2>Key Required</h2>
+        <input type="text" id="keyInput" placeholder="Enter PortalKey">
+        <br>
+        <button onclick="checkKey()">Submit</button>
+    </div>
+
+    <div id="gamePortal">
+        <ul class="game-list">
+            <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
+            <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
+            <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
+            <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li> <!-- Proxy square -->
+        </ul>
+    </div>
 
     <script>
+        function checkKey() {
+            var keyInput = document.getElementById('keyInput').value;
+            if (keyInput === "PortalKey") {
+                document.getElementById('keyForm').style.display = "none";
+                document.getElementById('gamePortal').style.display = "block";
+            } else {
+                alert("Incorrect Key. Please try again.");
+            }
+        }
+
         function openGame(url) {
             var newWindow = window.open('about:blank', '_blank'); // Open a blank page
             newWindow.document.title = "about:blank"; // Set title of about:blank page
