@@ -22,13 +22,24 @@
             font-weight: bold;
             background-color: #A8D5BA;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            text-align: center;
+            justify-content: flex-start;
         }
 
+        /* Title styling */
         h1 {
             color: #333;
+            margin-top: 20px;
+        }
+
+        /* Center content vertically */
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-grow: 1;
         }
 
         .game-list {
@@ -84,21 +95,26 @@
     </style>
 </head>
 <body>
+    <!-- Title at the top -->
     <h1>Game Portal</h1>
-    <div id="keyForm">
-        <h2>Key Required</h2>
-        <input type="text" id="keyInput" placeholder="Enter Key">
-        <br>
-        <button onclick="checkKey()">Submit</button>
-    </div>
 
-    <div id="gamePortal">
-        <ul class="game-list">
-            <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
-            <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
-            <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
-            <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li>
-        </ul>
+    <!-- Centered content area -->
+    <div class="content-container">
+        <div id="keyForm">
+            <h2>Key Required</h2>
+            <input type="text" id="keyInput" placeholder="Enter Key">
+            <br>
+            <button onclick="checkKey()">Submit</button>
+        </div>
+
+        <div id="gamePortal">
+            <ul class="game-list">
+                <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
+                <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
+                <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
+                <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li>
+            </ul>
+        </div>
     </div>
 
     <script>
