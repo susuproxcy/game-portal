@@ -3,83 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Classroom</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet">
+    <title>Google Classroom</title> <!-- Set the tab title to "Google Classroom" -->
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet"> <!-- Import Dosis font -->
     <style>
-        /* Remove all default margin and padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        body {
+            font-family: 'Dosis', sans-serif; /* Use Dosis font */
+            font-weight: bold; /* Set font to bold */
+            background-color: #A8D5BA; /* Mid-dark light green */
+            text-align: center;
+            padding: 50px;
         }
-
-        /* Ensure body and html take up the full screen */
-        html, body {
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Prevent scrolling */
-            font-family: 'Dosis', sans-serif;
-            font-weight: bold;
-            background-color: #A8D5BA;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        /* Title styling */
         h1 {
             color: #333;
-            margin-top: 20px;
         }
-
-        /* Center content vertically */
-        .content-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-        }
-
         .game-list {
             list-style-type: none;
             padding: 0;
         }
-
         .game-list li {
             margin: 20px 0;
         }
-
         .game-list a {
             text-decoration: none;
             font-size: 20px;
             color: #007bff;
-            background-color: #ADD8E6;
+            background-color: white; /* White square background */
             padding: 20px 40px;
             border-radius: 10px;
             transition: background-color 0.3s;
             display: inline-block;
+            background-color: #ADD8E6; /* Light blue square covering */
         }
-
         .game-list a:hover {
             background-color: #E2E6EA;
         }
-
         #gamePortal {
             display: none;
         }
-
         #keyForm {
             display: block;
         }
-
         input[type="text"] {
             padding: 10px;
             font-size: 18px;
             margin-top: 20px;
         }
-
         button {
             padding: 10px 20px;
             font-size: 18px;
@@ -88,33 +56,27 @@
             border-radius: 5px;
             cursor: pointer;
         }
-
         button:hover {
             background-color: #E2E6EA;
         }
     </style>
 </head>
 <body>
-    <!-- Title at the top -->
     <h1>Game Portal</h1>
+    <div id="keyForm">
+        <h2>Key Required</h2>
+        <input type="text" id="keyInput" placeholder="Enter Key">
+        <br>
+        <button onclick="checkKey()">Submit</button>
+    </div>
 
-    <!-- Centered content area -->
-    <div class="content-container">
-        <div id="keyForm">
-            <h2>Key Required</h2>
-            <input type="text" id="keyInput" placeholder="Enter Key">
-            <br>
-            <button onclick="checkKey()">Submit</button>
-        </div>
-
-        <div id="gamePortal">
-            <ul class="game-list">
-                <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
-                <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
-                <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
-                <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li>
-            </ul>
-        </div>
+    <div id="gamePortal">
+        <ul class="game-list">
+            <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
+            <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
+            <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
+            <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li> <!-- Proxy square -->
+        </ul>
     </div>
 
     <script>
@@ -129,22 +91,28 @@
         }
 
         function openGame(url) {
-            var newWindow = window.open('about:blank', '_blank');
-            newWindow.document.title = "about:blank";
-            newWindow.document.write('<html><head><title>about:blank</title></head><body style="margin:0;padding:0;width:100%;height:100%;">');
+            var newWindow = window.open('about:blank', '_blank'); // Open a blank page
+            newWindow.document.title = "about:blank"; // Set title of about:blank page
+            newWindow.document.write('<html><head><title>about:blank</title></head><body>');
             newWindow.document.write('<iframe src="' + url + '" width="100%" height="100%" style="border: none;"></iframe>');
             newWindow.document.write('</body></html>');
             newWindow.document.close();
 
-            // Attempt to make it fullscreen
+            // Request fullscreen after the page is loaded
             newWindow.document.body.onload = function() {
                 if (newWindow.document.documentElement.requestFullscreen) {
                     newWindow.document.documentElement.requestFullscreen();
+                } else if (newWindow.document.documentElement.mozRequestFullScreen) { // Firefox
+                    newWindow.document.documentElement.mozRequestFullScreen();
+                } else if (newWindow.document.documentElement.webkitRequestFullscreen) { // Chrome and Safari
+                    newWindow.document.documentElement.webkitRequestFullscreen();
+                } else if (newWindow.document.documentElement.msRequestFullscreen) { // IE/Edge
+                    newWindow.document.documentElement.msRequestFullscreen();
                 }
             };
 
-            window.close();
+            window.close(); // Close the game portal page
         }
     </script>
 </body>
-</html>
+</html
