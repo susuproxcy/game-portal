@@ -3,116 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Google Classroom</title> <!-- Set the tab title to "Google Classroom" -->
-    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet"> <!-- Import Dosis font -->
+    <title>Google Classroom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet">
     <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #A8D5BA; /* Light green background */
+        }
+
         body {
-            font-family: 'Dosis', sans-serif; /* Use Dosis font */
-            font-weight: bold; /* Set font to bold */
-            background-color: #A8D5BA; /* Mid-dark light green */
+            font-family: 'Dosis', sans-serif;
+            font-weight: bold;
             text-align: center;
             padding: 50px;
         }
+
         h1 {
-            color: #333;
+            color: #333; /* Dark text color */
         }
-        .game-list {
+
+        .key-input {
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            margin-right: 20px; /* Space between input and button */
+        }
+
+        .confirm-button {
+            font-size: 20px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #007bff; /* Button color */
+            color: white; /* Button text color */
+            border: none;
+            cursor: pointer;
+        }
+
+        .confirm-button:hover {
+            background-color: #0056b3; /* Darker button color on hover */
+        }
+
+        .website-list {
             list-style-type: none;
             padding: 0;
+            display: none; /* Initially hidden */
+            margin-top: 20px;
         }
-        .game-list li {
+
+        .website-list li {
             margin: 20px 0;
         }
-        .game-list a {
+
+        .website-list a {
             text-decoration: none;
             font-size: 20px;
-            color: #007bff;
-            background-color: white; /* White square background */
+            color: #007bff; /* Link color */
+            background-color: #ADD8E6; /* Light blue background */
             padding: 20px 40px;
             border-radius: 10px;
             transition: background-color 0.3s;
             display: inline-block;
-            background-color: #ADD8E6; /* Light blue square covering */
         }
-        .game-list a:hover {
-            background-color: #E2E6EA;
+
+        .website-list a:hover {
+            background-color: #E2E6EA; /* Hover color */
         }
-        #gamePortal {
-            display: none;
-        }
-        #keyForm {
-            display: block;
-        }
-        input[type="text"] {
-            padding: 10px;
-            font-size: 18px;
+
+        /* Style for the iframe */
+        .form-iframe {
+            display: none; /* Initially hidden */
             margin-top: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #ADD8E6;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #E2E6EA;
+            border: none; /* Remove border */
+            width: 640px;
+            height: 587px;
         }
     </style>
 </head>
 <body>
-    <h1>Game Portal</h1>
-    <div id="keyForm">
-        <h2>Key Required</h2>
-        <input type="text" id="keyInput" placeholder="Enter Key">
-        <br>
-        <button onclick="checkKey()">Submit</button>
-    </div>
+    <h1>Access the Website List</h1>
+    <input type="text" class="key-input" placeholder="Enter Key" id="keyInput">
+    <button class="confirm-button" onclick="checkKey()">Confirm</button>
+    
+    <ul class="website-list" id="websiteList">
+        <li><a href="https://susuproxcy.github.io/susug/" target="_blank">OvO</a></li>
+        <li><a href="https://fb.nbadebate.com" target="_blank">FootBall Bros</a></li>
+        <li><a href="https://sandstrike.io" target="_blank">SandStrike</a></li>
+        <li><a href="https://geographyles.com" target="_blank">Proxy</a></li>
+        <li><a href="https://www.google.com" target="_blank">Google</a></li>
+    </ul>
 
-    <div id="gamePortal">
-        <ul class="game-list">
-            <li><a href="#" onclick="openGame('https://susuproxcy.github.io/susug/')">OvO</a></li>
-            <li><a href="#" onclick="openGame('https://fb.nbadebate.com')">FootBall Bros</a></li>
-            <li><a href="#" onclick="openGame('https://sandstrike.io')">SandStrike</a></li>
-            <li><a href="#" onclick="openGame('https://geographyles.com')">Proxy</a></li> <!-- Proxy square -->
-        </ul>
-    </div>
+    <iframe class="form-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSenSHYUxDWtXgiQgfbU9dHPgDKDPySa__zptqZCzCbptY5doQ/viewform?embedded=true" loading="lazy">Loading…</iframe>
 
     <script>
         function checkKey() {
-            var keyInput = document.getElementById('keyInput').value;
-            if (keyInput === "PortalKey") {
-                document.getElementById('keyForm').style.display = "none";
-                document.getElementById('gamePortal').style.display = "block";
+            var inputKey = document.getElementById('keyInput').value;
+            var correctKey = "PortalKey"; // The required key
+            if (inputKey === correctKey) {
+                document.getElementById('websiteList').style.display = 'block'; // Show the website list
+                document.querySelector('.form-iframe').style.display = 'block'; // Show the iframe
             } else {
                 alert("Incorrect Key. Please try again.");
             }
         }
-
-        function openGame(url) {
-            var newWindow = window.open('about:blank', '_blank'); // Open a blank page
-            newWindow.document.title = "about:blank"; // Set title of about:blank page
-            newWindow.document.write('<html><head><title>about:blank</title></head><body>');
-            newWindow.document.write('<iframe src="' + url + '" width="100%" height="100%" style="border: none;"></iframe>');
-            newWindow.document.write('</body></html>');
-            newWindow.document.close();
-
-            // Request fullscreen after the page is loaded
-            newWindow.document.body.onload = function() {
-                if (newWindow.document.documentElement.requestFullscreen) {
-                    newWindow.document.documentElement.requestFullscreen();
-                } else if (newWindow.document.documentElement.mozRequestFullScreen) { // Firefox
-                    newWindow.document.documentElement.mozRequestFullScreen();
-                } else if (newWindow.document.documentElement.webkitRequestFullscreen) { // Chrome and Safari
-                    newWindow.document.documentElement.webkitRequestFullscreen();
-                } else if (newWindow.document.documentElement.msRequestFullscreen) { // IE/Edge
-                    newWindow.document.documentElement.msRequestFullscreen();
-                }
-            };
-
-            window.close(); // Close the game portal page
-        }
-    </script>
-</body>
-</html
+    </
